@@ -1,7 +1,14 @@
-FROM node:lts-buster
-RUN git clone https://github.com/Johnwayne209/John-Reese/root/Johnwayne209
-WORKDIR /root/Johnwayne209
-RUN npm install && npm install -g pm2 || yarn install --network-concurrency 1
+Base image
+FROM node:18
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm install
+
 COPY . .
-EXPOSE 9090
-CMD ["npm", "start"]
+
+EXPOSE 3000
+
+CMD ["node", "index.js"].
